@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUNG CAPTCHA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="background-video">
+    <video autoplay muted loop id="bgVideo">
+      <source src="92718-637669246_medium.mp4"  type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <audio autoplay loop id="bgSound">
+    <source src="Kendrick-Lamar-Not-Like-Us-drake-Diss-(HipHopKit.com).mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <div class="parallax-container">
+    <div class="parallax-layer" data-speed="0.1"></div>
+    <div class="parallax-layer" data-speed="0.3"></div>
+    <div class="parallax-layer" data-speed="0.5"></div>
+  </div>
+
+
+  <div class="captcha-container">
+    <div class="moving-character">
+      <a href="sun edi.mp4"><img src="pas.jpeg" alt="Tech Tattooed Character"></a>
+    </div>
+
+  
+    <div class="floating-buttons">
+      <a href="sun edi.mp4"><button class="float-btn" data-value="1">1</button></a>
+      <a href="a1.html"><button class="float-btn" data-value="2">2</button></a>
+      <a href="website.html"><button class="float-btn" data-value="3">3</button></a>
+      <a href="website2.html"><button class="float-btn" data-value="4">4</button></a>
+    </div>
+
+  
+    <div class="captcha-form">
+      <input type="text" id="captchaInput" placeholder="Enter the code" required>
+      <button type="submit" id="submitBtn">Submit</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <style>
+    body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.parallax-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.captcha-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+}
+
+.moving-character {
+  position: relative;
+  animation: moveCharacter 10s infinite linear;
+}
+
+.moving-character img {
+  width: 100px;
+  height: auto;
+}
+
+@keyframes moveCharacter {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.floating-buttons {
+  margin-top: 20px;
+}
+
+.float-btn {
+  margin: 5px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: rgb(20, 241, 204);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.float-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-5px);
+}
+
+.captcha-form {
+  margin-top: 20px;
+}
+
+.captcha-form input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.captcha-form button {
+  padding: 10px 20px;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.captcha-form button:hover {
+  background: #0056b3;
+}
+  </style>
+  <script>
+    // Parallax Effect
+document.addEventListener('scroll', () => {
+  const layers = document.querySelectorAll('.parallax-layer');
+  layers.forEach(layer => {
+    const speed = parseFloat(layer.getAttribute('data-speed'));
+    const yOffset = window.scrollY * speed;
+    layer.style.transform = `translateY(${yOffset}px)`;
+  });
+});
+
+// Floating Buttons Animation
+const buttons = document.querySelectorAll('.float-btn');
+buttons.forEach(button => {
+  button.addEventListener('mouseover', () => {
+    button.style.transform = 'translateY(-10px)';
+  });
+  button.addEventListener('mouseout', () => {
+    button.style.transform = 'translateY(0)';
+  });
+});
+
+// CAPTCHA Logic
+const captchaInput = document.getElementById('captchaInput');
+const submitButton = document.getElementById('submitBtn');
+let captchaCode = '';
+
+// Generate a random CAPTCHA code
+function generateCaptcha() {
+  captchaCode = Math.floor(1000 + Math.random() * 9000).toString();
+  alert(`CAPTCHA Code: ${captchaCode}`); // Display the code for testing
+}
+
+// Validate CAPTCHA
+submitButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (captchaInput.value === captchaCode) {
+    alert("ARISE!! Verified!");
+  } else {
+    alert("Tsk BAKA!. Try again.");
+    generateCaptcha(); // Regenerate CAPTCHA
+  }
+});
+
+// Initialize CAPTCHA
+generateCaptcha();
+  </script>
+</body>
+</html>
